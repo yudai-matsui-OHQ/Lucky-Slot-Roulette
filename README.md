@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# Lucky Slot Roulette
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+会議のファシリテーターやタスクの担当者をランダムに選出するスロット＆ルーレットアプリです。メンバーを登録し、ボタンひとつで公平に抽選できます。
 
-Currently, two official plugins are available:
+## 主な機能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **スロット / ルーレット抽選** — 登録メンバーからランダムに 1 名を選出
+- **メンバー管理** — メンバーの追加・編集・削除
+- **前回当選者の除外** — 連続で同じ人が選ばれないようにするオプション
+- **抽選履歴** — 過去の抽選結果を一覧で確認
+- **紙吹雪演出** — 当選時に canvas-confetti によるアニメーション
+- **ローカル保存** — データはブラウザの LocalStorage に保存
 
-## React Compiler
+## 技術スタック
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + TypeScript
+- Vite 7
+- Tailwind CSS 4
+- Framer Motion（アニメーション）
+- canvas-confetti（紙吹雪エフェクト）
 
-## Expanding the ESLint configuration
+## 必要な環境
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 18 以上
+- npm 9 以上
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## インストール
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone <リポジトリURL>
+cd Lucky-Slot-Roulette
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 実行方法
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 開発サーバー
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
+```
+
+ブラウザで `http://localhost:5173` を開くとアプリが表示されます。
+
+### 本番ビルド
+
+```bash
+npm run build
+```
+
+ビルド成果物は `dist/` ディレクトリに出力されます。
+
+### ビルドプレビュー
+
+```bash
+npm run preview
+```
+
+ビルド済みファイルをローカルで確認できます。
+
+### Lint
+
+```bash
+npm run lint
 ```
