@@ -5,8 +5,8 @@ import { secureRandomIndex } from '../utils/random';
 export const CARD_HEIGHT = 80;
 
 /* ── Tuning knobs ────────────────────────────────── */
-const CYCLES = 12;
-const SPIN_DURATION = 3.8;
+const CYCLES = 15;
+const SPIN_DURATION = 7.0;
 const CLICK_MIN = 0.06;
 const CLICK_MAX = 0.40;
 
@@ -111,9 +111,8 @@ export function useRoulette() {
 /* ── Easing helpers ──────────────────────────────── */
 
 function spinCurve(t: number): number {
-  if (t < 0.25) return 0.45 * easeOutCubic(t / 0.25);
-  const t2 = (t - 0.25) / 0.75;
-  return 0.45 + 0.55 * easeOutQuart(t2);
+  // シンプルなeaseOutQuint: 最初は速く、徐々に減速
+  return 1 - Math.pow(1 - t, 5);
 }
 
 function spinCurveDeriv(t: number): number {
